@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Login</title>
+    <script type="module">
+        import { h, createApp, reactive } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
+
+        const Login = {
+            setup() {
+                const form = reactive({ username: "", password: "" });
+                const submit = (e) => {
+                    e.preventDefault();
+                    alert(`Username: ${form.username}\nPassword: ${form.password}`);
+                };
+
+                return () => h('form', { onSubmit: submit }, [
+                    h('input', { type: 'text', placeholder: 'Username', value: form.username, onInput: e => form.username = e.target.value }),
+                    h('input', { type: 'password', placeholder: 'Password', value: form.password, onInput: e => form.password = e.target.value }),
+                    h('button', { type: 'submit' }, 'Login')
+                ]);
+            }
+        };
+
+        createApp(Login).mount('#root');
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
