@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue Login</title>
+    <title>Vue Login with Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script type="module">
         import { h, createApp, reactive } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
 
@@ -15,10 +16,28 @@
                     alert(`Username: ${form.username}\nPassword: ${form.password}`);
                 };
 
-                return () => h('form', { onSubmit: submit }, [
-                    h('input', { type: 'text', placeholder: 'Username', value: form.username, onInput: e => form.username = e.target.value }),
-                    h('input', { type: 'password', placeholder: 'Password', value: form.password, onInput: e => form.password = e.target.value }),
-                    h('button', { type: 'submit' }, 'Login')
+                return () => h('div', { class: "flex justify-center items-center min-h-screen bg-gray-100" }, [
+                    h('form', { class: "bg-white p-6 rounded-lg shadow-md w-80", onSubmit: submit }, [
+                        h('h2', { class: "text-2xl font-semibold mb-4 text-center" }, "Login"),
+                        h('input', { 
+                            type: 'text', 
+                            placeholder: 'Username', 
+                            value: form.username, 
+                            onInput: e => form.username = e.target.value, 
+                            class: "w-full p-2 mb-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        }),
+                        h('input', { 
+                            type: 'password', 
+                            placeholder: 'Password', 
+                            value: form.password, 
+                            onInput: e => form.password = e.target.value, 
+                            class: "w-full p-2 mb-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        }),
+                        h('button', { 
+                            type: 'submit', 
+                            class: "w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition"
+                        }, 'Login')
+                    ])
                 ]);
             }
         };
